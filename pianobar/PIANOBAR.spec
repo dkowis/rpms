@@ -1,24 +1,27 @@
+%define version 2012.09.07
+
 Name: pianobar
-Version: 2010.11.06
+Version: %{version}
 Release: 1%{?dist}
 Summary: "pianobar" is a free/open-source, console-based replacement for pandora's flash player.
 
 Group: Applications/Multimedia
 License: AS-IS
-URL: http://6xq.net/html/00/17.html
-Source0: http://download.github.com/PromyLOPh-pianobar-2010.11.06-0-gec13167.tar.gz
+URL: http://6xq.net/projects/pianobar/
+Source0: http://6xq.net/projects/pianobar/pianobar-%{version}.tar.bz2
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
-BuildRequires: make, libao-devel, libxml2-devel, faad2-libs, libmad-devel
-Requires: libao, faad2-libs, libxml2
+BuildRequires: make, libao-devel, gnutls-devel, libgcrypt-devel, json-c-devel,  faad2-libs, libmad-devel
+Requires: libao, faad2-libs, gnutls, libgcrypt, json-c, libmad
 
 %description
- "pianobar" supports all important features pandora has:
- * Create, delete, rename stations and add more music
- * Rate and temporary ban tracks as well as move them to another station
- * "Shared stations"
- * last.fm scrobbling
- * Proxy support for non-americans
+Pianobar is a free/open-source, console-based client for the personalized online radio Pandora
+ * play and manage (create, add more music, delete, rename, ...) stations
+ * rate songs and explain why they have been selected
+ * upcoming songs/song history
+ * customize keybindings and text output
+ * remote control and eventcmd interface (send tracks to last.fm, for example)
+ * proxy support for listeners outside the USA
 
 %build
 gmake
