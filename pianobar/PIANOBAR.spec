@@ -11,7 +11,7 @@ URL: http://6xq.net/projects/pianobar/
 Source0: http://6xq.net/projects/pianobar/pianobar-%{version}.tar.bz2
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
-BuildRequires: make, libao-devel, gnutls-devel, libgcrypt-devel, json-c-devel,  faad2-libs, libmad-devel
+BuildRequires: make, libao-devel, gnutls-devel, libgcrypt-devel, json-c-devel,  faad2-devel, libmad-devel
 Requires: libao, faad2-libs, gnutls, libgcrypt, json-c, libmad
 
 %description
@@ -22,6 +22,9 @@ Pianobar is a free/open-source, console-based client for the personalized online
  * customize keybindings and text output
  * remote control and eventcmd interface (send tracks to last.fm, for example)
  * proxy support for listeners outside the USA
+
+%prep
+%setup -q -n pianobar-%{version}
 
 %build
 gmake
@@ -38,8 +41,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING INSTALL README
+%doc ChangeLog COPYING INSTALL README
 %{_bindir}/*
 %{_mandir}/man1/*
 
 %changelog
+ * Thu Sep 13 2012 David Kowis <dkowis@shlrm.org> - 2012.09.07-1
+ - Created this based on someone elses older rpm spec file
